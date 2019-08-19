@@ -1,22 +1,29 @@
 package com.hackerrank.eshopping.product.dashboard.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
+
+    @Id
     private Long id;
     private String name;
     private String category;
-    private Double retailPrice;
-    private Double discountedPrice;
+    private Double retail_price;
+    private Double discounted_price;
     private Boolean availability;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String category, Double retailPrice, Double discountedPrice, Boolean availability) {
+    public Product(Long id, String name, String category, Double retail_price, Double discounted_price, Boolean availability) {
         this.id = id;
         this.name = name;
         this.category = category;
-        this.retailPrice = retailPrice;
-        this.discountedPrice = discountedPrice;
+        this.retail_price = retail_price;
+        this.discounted_price = discounted_price;
         this.availability = availability;
     }
 
@@ -44,20 +51,20 @@ public class Product {
         this.category = category;
     }
 
-    public Double getRetailPrice() {
-        return retailPrice;
+    public Double getRetail_price() {
+        return retail_price;
     }
 
-    public void setRetailPrice(Double retailPrice) {
-        this.retailPrice = retailPrice;
+    public void setRetail_price(Double retail_price) {
+        this.retail_price = retail_price;
     }
 
-    public Double getDiscountedPrice() {
-        return discountedPrice;
+    public Double getDiscounted_price() {
+        return discounted_price;
     }
 
-    public void setDiscountedPrice(Double discountedPrice) {
-        this.discountedPrice = discountedPrice;
+    public void setDiscounted_price(Double discounted_price) {
+        this.discounted_price = discounted_price;
     }
 
     public Boolean getAvailability() {
