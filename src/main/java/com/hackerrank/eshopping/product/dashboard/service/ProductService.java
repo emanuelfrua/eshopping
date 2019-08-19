@@ -34,8 +34,9 @@ public class ProductService {
         return products;
     }
 
-    public void delete(long id) {
-        productRepository.deleteById(id);
+    public List<Product> getProductsByCategoryAndAvailability(String category, boolean availability) {
+        List<Product> products = new ArrayList();
+        productRepository.findProductsByCategoryAndAvailability(category, availability).forEach(product -> products.add(product));
+        return products;
     }
-
 }

@@ -82,6 +82,18 @@ public class ProductsController {
                 HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/products", params = {"category", "availability"}, method = RequestMethod.GET)
+    private ResponseEntity<Object> getProductsByCategoryAndAvailability(@RequestParam(value = "category") String category, @RequestParam(value = "availability") int availabilityParam) {
+
+        boolean availabilityBoolean = (availabilityParam == 1);
+        List<Product> products = productService.getProductsByCategoryAndAvailability(category, availabilityBoolean);
+        Collections.sort(products, Product.SortDescByDiscountPercentage);
+
+        return new ResponseEntity<>(
+                products,
+                HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     private ResponseEntity<Object> getAllProducts() {
 

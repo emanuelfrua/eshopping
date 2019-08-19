@@ -103,4 +103,28 @@ public class Product implements Comparable<Product> {
                 return 1;
             }
     };
+
+    public static Comparator<Product> SortDescByDiscountPercentage= (p1, p2) ->  {
+
+        double p1RetailPrice = p1.getRetail_price();
+        double p2RetailPrice = p2.getRetail_price();
+        double p1DiscountedPrice = p1.getDiscounted_price();
+        double p2DiscountedPrice = p2.getDiscounted_price();
+        int p1DiscountPercentage = (int) ((p1RetailPrice - p1DiscountedPrice) / p1RetailPrice * 100);
+        int p2DiscountPercentage = (int) ((p2RetailPrice - p2DiscountedPrice) / p2RetailPrice * 100);
+
+        if (p1DiscountPercentage > p2DiscountPercentage) {
+            return -1;
+        } else if (p1DiscountPercentage < p2DiscountPercentage) {
+            return 1;
+        } else {
+            if (p1DiscountedPrice > p2DiscountedPrice) {
+                return 1;
+            } else if (p1DiscountedPrice < p2DiscountedPrice) {
+                return -1;
+            } else {
+                return p1.compareTo(p2);
+            }
+        }
+    };
 }
