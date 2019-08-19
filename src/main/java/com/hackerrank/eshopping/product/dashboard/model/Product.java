@@ -1,11 +1,11 @@
 package com.hackerrank.eshopping.product.dashboard.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Comparator;
 
 @Entity
-public class Product {
+public class Product implements Comparable<Product> {
 
     @Id
     private Long id;
@@ -74,4 +74,33 @@ public class Product {
     public void setAvailability(Boolean availability) {
         this.availability = availability;
     }
+
+    @Override
+    public int compareTo(Product p) {
+        if (this.getId() > p.getId()) {
+            return 1;
+        } else if (this.getId() < p.getId()) {
+            return -1;
+        }
+        return 0;
+    }
+
+    public static Comparator<Product> SortAscByAvailabilityDiscountAndId = (p1, p2) ->  {
+
+            if (p1.getAvailability() && p1.getAvailability()) {
+
+                if (p1.getDiscounted_price() == p2.getDiscounted_price()) {
+                    return p1.compareTo(p2);
+                } else if (p1.getDiscounted_price() > p2.getDiscounted_price()) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+
+            } else if (p1.getAvailability()) {
+                return -1;
+            } else {
+                return 1;
+            }
+    };
 }

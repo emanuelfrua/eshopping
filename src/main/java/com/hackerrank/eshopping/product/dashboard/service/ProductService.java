@@ -28,6 +28,12 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public List<Product> getProductsByCategory(String category) {
+        List<Product> products = new ArrayList();
+        productRepository.findProductsByCategory(category).forEach(product -> products.add(product));
+        return products;
+    }
+
     public void delete(long id) {
         productRepository.deleteById(id);
     }
